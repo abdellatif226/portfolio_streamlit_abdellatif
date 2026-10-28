@@ -1,3 +1,9 @@
+"""
+Portfolio Professionnel
+Auteur : Abdellatif Kiswendsida NIKIEMA
+Titre : Ingénieur Logiciel Full-Stack | Spécialiste IA & Fouille de Données
+"""
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -12,682 +18,1206 @@ try:
 except ImportError:
     PIL_AVAILABLE = False
 
-# ---------------------------------------------------------
-# Configuration de la page
-# ---------------------------------------------------------
+# ==============================================================================
+# 1. CONFIGURATION DE LA PAGE
+# ==============================================================================
 st.set_page_config(
-    page_title="Portfolio | Abdellatif - Data Scientist & AI Engineer",
-    page_icon="⚡",
+    page_title="Abdellatif K. NIKIEMA | Ingénieur Logiciel & IA",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# ---------------------------------------------------------
-# Style CSS personnalisé & Design moderne
-# ---------------------------------------------------------
+# ==============================================================================
+# 2. STYLES CSS ÉPURÉS & PROFESSIONNELS (EXECUTIVE CORPORATE)
+# ==============================================================================
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-    html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    /* Hero section styling */
-    .hero-title {
-        font-size: 2.7rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #3B82F6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1.2;
-        margin-bottom: 0.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #334155;
-        margin-bottom: 1rem;
-    }
-
-    .hero-description {
-        font-size: 1.05rem;
-        color: #475569;
-        line-height: 1.6;
-    }
-
-    /* Badges & Pills */
-    .badge {
-        display: inline-block;
-        background: #EFF6FF;
-        color: #1D4ED8;
-        border: 1px solid #BFDBFE;
-        font-weight: 600;
-        padding: 5px 12px;
-        border-radius: 9999px;
-        font-size: 0.85rem;
-        margin: 3px 4px 3px 0;
-        transition: all 0.2s ease-in-out;
-    }
-    .badge:hover {
-        background: #DBEAFE;
-        transform: translateY(-1px);
-    }
-
-    .badge-accent {
-        background: #F0FDF4;
-        color: #15803D;
-        border: 1px solid #BBF7D0;
-    }
-
-    .badge-purple {
-        background: #FAF5FF;
-        color: #7E22CE;
-        border: 1px solid #E9D5FF;
-    }
-
-    /* Card styling */
-    .custom-card {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 14px;
-        padding: 1.25rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-        margin-bottom: 1rem;
-    }
-
-    .stat-box {
-        background: linear-gradient(145deg, #F8FAFC 0%, #EDF2F7 100%);
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .stat-number {
-        font-size: 2rem;
-        font-weight: 800;
-        color: #2563EB;
-        line-height: 1;
-    }
-
-    .stat-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #64748B;
-        margin-top: 0.35rem;
-    }
-
-    /* Timeline styling */
-    .timeline-item {
-        border-left: 2px solid #3B82F6;
-        padding-left: 1.2rem;
-        margin-left: 0.5rem;
-        margin-bottom: 1.5rem;
-        position: relative;
-    }
-    .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: -6px;
-        top: 4px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: #2563EB;
-        border: 2px solid #FFFFFF;
-    }
-    .timeline-role {
-        font-weight: 700;
-        font-size: 1.05rem;
+    /* Typographie & Arrière-plan */
+    html, body, [class*="css"], .stApp {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        background-color: #F8FAFC !important;
         color: #0F172A;
     }
-    .timeline-company {
-        font-weight: 600;
-        color: #2563EB;
-        font-size: 0.95rem;
+
+    code, pre {
+        font-family: 'JetBrains Mono', monospace !important;
     }
-    .timeline-date {
-        font-size: 0.82rem;
-        color: #64748B;
+
+    /* Barre latérale */
+    [data-testid="stSidebar"] {
+        background-color: #FFFFFF !important;
+        border-right: 1px solid #E2E8F0 !important;
+    }
+
+    /* Photo de profil sobre et élégante */
+    [data-testid="stSidebar"] img {
+        border-radius: 50% !important;
+        aspect-ratio: 1 / 1 !important;
+        object-fit: cover !important;
+        object-position: top center !important;
+        border: 2px solid #E2E8F0 !important;
+        margin: 0 auto 0.4rem auto !important;
+        display: block !important;
+    }
+
+    /* Avatar Monogramme si image absente */
+    .avatar-monogram {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 0.5rem auto;
+        border-radius: 50%;
+        background-color: #1E293B;
+        color: #F8FAFC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.5rem;
+        letter-spacing: 0.05em;
+        border: 2px solid #E2E8F0;
+    }
+
+    /* En-tête Principal (Hero) */
+    .hero-container {
+        background-color: #0F172A;
+        padding: 2.2rem 2.4rem;
+        border-radius: 12px;
+        color: #F8FAFC;
+        margin-bottom: 1.6rem;
+        border: 1px solid #1E293B;
+    }
+
+    .hero-badge-tag {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.08);
+        color: #94A3B8;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 6px;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
         margin-bottom: 0.4rem;
     }
 
-    /* Footer */
-    .footer {
-        text-align: center;
-        color: #94A3B8;
+    .hero-subtitle {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #60A5FA;
+        margin-bottom: 0.9rem;
+    }
+
+    .hero-desc {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: #CBD5E1;
+        max-width: 940px;
+    }
+
+    /* Cartes Piliers d'Intervention */
+    .pillar-card {
+        background-color: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 8px;
+        padding: 1.15rem 1.1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+
+    .pillar-title {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: #0F172A;
+        margin-bottom: 0.45rem;
+        line-height: 1.3;
+    }
+
+    .pillar-desc {
         font-size: 0.85rem;
-        padding: 2rem 0 1rem 0;
-        margin-top: 3rem;
+        line-height: 1.55;
+        color: #475569;
+        margin-bottom: 0.75rem;
+    }
+
+    .pillar-tags {
+        font-size: 0.75rem;
+        color: #2563EB;
+        font-weight: 600;
+        margin-top: auto;
+    }
+
+
+    /* Navigation par Onglets */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 6px;
+        background-color: #E2E8F0;
+        padding: 4px;
+        border-radius: 8px;
+        margin-bottom: 1.4rem;
+    }
+    .stTabs [data-baseweb="tab"] {
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.86rem;
+        color: #475569;
+        background-color: transparent;
+        border: none;
+    }
+    .stTabs [data-baseweb="tab"]:hover {
+        color: #0F172A;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
+        font-weight: 700 !important;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08) !important;
+    }
+    .stTabs [data-baseweb="tab-highlight"] {
+        display: none !important;
+    }
+
+    /* Fiches Projets */
+    .project-card {
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 10px;
+        padding: 1.4rem;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+
+    .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .project-title {
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: #0F172A;
+        letter-spacing: -0.01em;
+        margin: 0;
+    }
+
+    .project-role {
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: #2563EB;
+        margin-bottom: 0.65rem;
+    }
+
+    .project-desc {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: #334155;
+        margin-bottom: 0.85rem;
+    }
+
+    .impact-box {
+        background-color: #F8FAFC;
+        border-left: 3px solid #0F766E;
+        padding: 0.6rem 0.85rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.86rem;
+        font-weight: 500;
+        color: #115E59;
+        margin-bottom: 0.85rem;
+    }
+
+    /* Badges de Technologies (Subtils et lisibles) */
+    .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 0.5rem;
+    }
+
+    .tech-badge {
+        display: inline-block;
+        background-color: #F1F5F9;
+        color: #334155;
+        border: 1px solid #E2E8F0;
+        font-size: 0.74rem;
+        font-weight: 500;
+        padding: 2.5px 8.5px;
+        border-radius: 4px;
+    }
+
+    .tech-badge-primary {
+        background-color: #EFF6FF;
+        color: #1E40AF;
+        border-color: #DBEAFE;
+    }
+
+    .tech-badge-green {
+        background-color: #F0FDF4;
+        color: #166534;
+        border-color: #DCFCE7;
+    }
+
+    .tech-badge-purple {
+        background-color: #FAF5FF;
+        color: #581C87;
+        border-color: #F3E8FF;
+    }
+
+    .tech-badge-amber {
+        background-color: #FFFBEB;
+        color: #92400E;
+        border-color: #FEF3C7;
+    }
+
+    /* Pilules de Certifications */
+    .cert-pill {
+        display: inline-block;
+        background-color: #F8FAFC;
+        color: #334155;
+        border: 1px solid #CBD5E1;
+        font-weight: 600;
+        font-size: 0.76rem;
+        padding: 3px 9px;
+        border-radius: 4px;
+        margin: 2px 3px 3px 0;
+    }
+
+    /* Boutons */
+    .stButton > button, .stDownloadButton > button {
+        border-radius: 6px !important;
+        font-weight: 600 !important;
+        font-size: 0.88rem !important;
+        border: 1px solid #CBD5E1 !important;
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
+        transition: none !important;
+    }
+    .stButton > button:hover, .stDownloadButton > button:hover {
+        border-color: #0F172A !important;
+        color: #0F172A !important;
+        background-color: #F8FAFC !important;
+    }
+    .stButton > button[kind="primary"] {
+        background-color: #0F172A !important;
+        color: #FFFFFF !important;
+        border: 1px solid #0F172A !important;
+    }
+    .stButton > button[kind="primary"]:hover {
+        background-color: #1E293B !important;
+    }
+
+    /* Formulaires */
+    [data-testid="stForm"] {
+        background-color: #FFFFFF !important;
+        border: 1px solid #E2E8F0 !important;
+        border-radius: 10px !important;
+        padding: 1.4rem !important;
+    }
+
+    /* Pied de page */
+    .footer-bar {
+        text-align: center;
+        padding: 2.5rem 0 1.5rem 0;
+        color: #94A3B8;
+        font-size: 0.82rem;
         border-top: 1px solid #E2E8F0;
+        margin-top: 3.5rem;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# BARRE LATÉRALE (SIDEBAR)
-# ---------------------------------------------------------
+# ==============================================================================
+# 3. BARRE LATÉRALE (SIDEBAR)
+# ==============================================================================
 with st.sidebar:
     profile_path = "assets/profile.png"
     if PIL_AVAILABLE and os.path.exists(profile_path):
         try:
-            img = Image.open(profile_path)
-            st.image(img, use_container_width=True)
+            profile_img = Image.open(profile_path)
+            c_p1, c_p2, c_p3 = st.columns([1, 3.5, 1])
+            with c_p2:
+                st.image(profile_img, use_container_width=True)
         except Exception:
             pass
     else:
         st.markdown("""
-        <div style="text-align: center; padding: 1.5rem 0;">
-            <div style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; background: linear-gradient(135deg, #2563EB, #1D4ED8); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);">
-                👨‍💻
-            </div>
-            <h3 style="margin-top: 0.8rem; margin-bottom: 0.1rem; color: #0F172A;">Abdellatif</h3>
-            <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 0;">Data Scientist & Ingénieur IA</p>
-        </div>
+        <div class="avatar-monogram">AKN</div>
         """, unsafe_allow_html=True)
 
-    st.markdown("### 📍 Coordonnées")
-    st.markdown("📍 **Localisation :** Paris & Remote (France)")
-    st.markdown("📧 **Email :** [contact.abdellatif@example.com](mailto:contact.abdellatif@example.com)")
-    st.markdown("💼 **Disponibilité :** À l'écoute de nouvelles opportunités")
+    # Identité & Titre
+    st.markdown("""
+    <div style="text-align: center; margin-top: 0.4rem; margin-bottom: 0.8rem;">
+        <h3 style="margin-top: 0; margin-bottom: 0.15rem; color: #0F172A; font-weight: 700; font-size: 1.15rem;">
+            Abdellatif K. NIKIEMA
+        </h3>
+        <p style="color: #2563EB; font-size: 0.84rem; font-weight: 600; margin-bottom: 0.25rem;">
+            Ingénieur Logiciel & IA
+        </p>
+        <p style="color: #64748B; font-size: 0.8rem; margin: 0;">
+            Ouagadougou, Burkina Faso
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("### 🌐 Liens professionnels")
+
+    # Certifications
+    st.markdown("##### Certifications")
     st.markdown("""
-    - [🔗 **LinkedIn**](https://linkedin.com)
-    - [🐙 **GitHub**](https://github.com)
-    - [✍️ **Medium / Blog**](https://medium.com)
-    - [🤗 **Hugging Face**](https://huggingface.co)
+    <span class="cert-pill">ITIL v4 Managing Professional</span>
+    <span class="cert-pill">PRINCE2 Practitioner</span>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # Coordonnées directes
+    st.markdown("##### Contact")
+    st.markdown("""
+    - **Localisation :** Ouagadougou, Burkina Faso
+    - **Téléphone :** [+226 78 80 50 60](tel:+22678805060) / [+226 65 36 99 49](tel:+22665369949)
+    - **Email :** [abdellatifnikiema@gmail.com](mailto:abdellatifnikiema@gmail.com)
+    - **Mobilité :** Présentiel & Remote
+    - **Statut :** Disponible pour mandats & consulting
     """)
 
+    # Réseaux professionnels
+    c_side1, c_side2 = st.columns(2)
+    with c_side1:
+        st.link_button("LinkedIn", "https://linkedin.com", use_container_width=True)
+    with c_side2:
+        st.link_button("GitHub", "https://github.com", use_container_width=True)
+
     st.markdown("---")
-    # Téléchargement de CV
-    cv_dummy_content = b"""%PDF-1.4
-1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
-2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
-3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >> endobj
-4 0 obj << /Length 44 >> stream
-BT /F1 12 Tf 72 712 Td (CV de Abdellatif - Data Scientist) Tj ET
-endstream
-endobj
-xref
-0 5
-0000000000 65535 f 
-0000000010 00000 n 
-0000000060 00000 n 
-0000000117 00000 n 
-0000000201 00000 n 
-trailer << /Size 5 /Root 1 0 R >>
-startxref
-295
-%%EOF"""
+
+    # Téléchargement CV
+    cv_file_path = "cv.pdf"
+    if os.path.exists(cv_file_path):
+        with open(cv_file_path, "rb") as pdf_file:
+            portfolio_cv_bytes = pdf_file.read()
+    else:
+        portfolio_cv_bytes = b"%PDF-1.4\n%Fallback CV"
 
     st.download_button(
-        label="📄 Télécharger mon CV (PDF)",
-        data=cv_dummy_content,
-        file_name="CV_Abdellatif_Data_Scientist.pdf",
+        label="Télécharger le CV (PDF)",
+        data=portfolio_cv_bytes,
+        file_name="CV_Abdellatif_Kiswendsida_NIKIEMA.pdf",
         mime="application/pdf",
         use_container_width=True
     )
 
     st.markdown("---")
-    st.caption("✨ Portfolio interactif propulsé par Streamlit & Plotly")
 
-# ---------------------------------------------------------
-# SECTION HERO & PRÉSENTATION
-# ---------------------------------------------------------
-col_hero_1, col_hero_2 = st.columns([2.2, 1.1])
-
-with col_hero_1:
-    st.markdown('<div class="hero-title">Bonjour, je suis Abdellatif 👋</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<div class="hero-subtitle">Data Scientist & Machine Learning Engineer | Spécialiste IA & Data Visualisation</div>',
-        unsafe_allow_html=True
-    )
+    # Compétences Techniques
+    st.markdown("##### Compétences Clés")
     st.markdown("""
-    <div class="hero-description">
-        Passionné par l'exploitation de la donnée et l'intelligence artificielle, je conçois des 
-        <strong>modèles de Machine Learning robustes</strong>, des <strong>pipelines d'ingénierie de données</strong> et des 
-        <strong>applications décisionnelles interactives</strong>.<br><br>
-        Mon objectif : transformer des données complexes en leviers stratégiques mesurables et déployer des solutions 
-        IA orientées produit à fort impact.
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    c_btn1, c_btn2 = st.columns([1, 1.2])
-    with c_btn1:
-        st.link_button("🚀 Découvrir mes projets", "#projets-phares", use_container_width=True)
-    with c_btn2:
-        st.link_button("📬 Me contacter directement", "#me-contacter", use_container_width=True)
-
-with col_hero_2:
-    st.markdown("""
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
-        <div class="stat-box">
-            <div class="stat-number">4+</div>
-            <div class="stat-label">Années d'Expérience</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">20+</div>
-            <div class="stat-label">Projets Réalisés</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">92%</div>
-            <div class="stat-label">Précision Moyenne ML</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Code Open Source</div>
-        </div>
+    <div class="badge-container">
+        <span class="tech-badge tech-badge-primary">Python</span>
+        <span class="tech-badge tech-badge-primary">FastAPI</span>
+        <span class="tech-badge tech-badge-primary">LightGBM</span>
+        <span class="tech-badge tech-badge-primary">XGBoost</span>
+        <span class="tech-badge tech-badge-primary">PyTorch</span>
+        <span class="tech-badge tech-badge-green">Spring Boot</span>
+        <span class="tech-badge tech-badge-green">Symfony 7</span>
+        <span class="tech-badge tech-badge-green">PHP / Laravel</span>
+        <span class="tech-badge tech-badge-purple">Flutter / Dart</span>
+        <span class="tech-badge tech-badge-purple">Edge AI / TFLite</span>
+        <span class="tech-badge tech-badge-amber">PostgreSQL</span>
+        <span class="tech-badge tech-badge-amber">MS SQL Server</span>
+        <span class="tech-badge tech-badge-amber">SAGE 100c</span>
+        <span class="tech-badge">Docker</span>
+        <span class="tech-badge">Linux Systemd</span>
+        <span class="tech-badge">Activiti BPMN</span>
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown("---")
+# ==============================================================================
+# 4. BANDEAU HERO & MÉTRIQUES D'IMPACT
+# ==============================================================================
+st.markdown("""
+<div class="hero-container">
+    <div class="hero-badge-tag">Profil Hybride | + de 7 Ans d'Expériences</div>
+    <div class="hero-title">Abdellatif Kiswendsida NIKIEMA</div>
+    <div class="hero-subtitle">Ingénieur Logiciel Full-Stack & Spécialiste IA / Fouille de Données</div>
+    <div class="hero-desc">
+        Profil alliant la rigueur d'un <strong>Architecte Logiciel Senior</strong>, l'expertise quantitative d'un 
+        <strong>Data Scientist Actuariel</strong> et l'expérience de plus de <strong>7 ans en exploitation de systèmes d'information critiques</strong>.
+        Conception et déploiement de solutions logicielles d'État, de moteurs prédictifs anti-fraude haute vélocité et de plateformes techniques conformes au <strong>Code CIMA</strong>.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# COMPÉTENCES TECHNIQUES
-# ---------------------------------------------------------
-st.subheader("🛠️ Compétences & Technologies")
+# 4 Piliers d'Intervention
+c1, c2, c3, c4 = st.columns(4)
 
-c_skill1, c_skill2, c_skill3, c_skill4 = st.columns(4)
-
-with c_skill1:
-    st.markdown("#### 💻 Langages & Core")
+with c1:
     st.markdown("""
-    <span class="badge">Python</span>
-    <span class="badge">SQL (PostgreSQL, BigQuery)</span>
-    <span class="badge">Bash / Linux</span>
-    <span class="badge">R</span>
-    <span class="badge">Git / GitHub</span>
+    <div class="pillar-card">
+        <div class="pillar-title">Ingénierie Logicielle</div>
+        <div class="pillar-desc">
+            Architectures modulaires, APIs haute vélocité et solutions robustes d'entreprise.
+        </div>
+        <div class="pillar-tags">Microservices • FastAPI • Spring Boot • Docker</div>
+    </div>
     """, unsafe_allow_html=True)
 
-with c_skill2:
-    st.markdown("#### 🧠 Machine Learning & IA")
+with c2:
     st.markdown("""
-    <span class="badge badge-accent">Scikit-Learn</span>
-    <span class="badge badge-accent">PyTorch</span>
-    <span class="badge badge-accent">XGBoost / LightGBM</span>
-    <span class="badge badge-accent">NLP & Transformers</span>
-    <span class="badge badge-accent">LangChain / RAG</span>
-    <span class="badge badge-accent">Hugging Face</span>
+    <div class="pillar-card">
+        <div class="pillar-title">IA & Fouille de Données</div>
+        <div class="pillar-desc">
+            Modèles prédictifs supervisés, détection de fraude financière et Edge Computing.
+        </div>
+        <div class="pillar-tags">LightGBM • XGBoost • PaySim • TFLite</div>
+    </div>
     """, unsafe_allow_html=True)
 
-with c_skill3:
-    st.markdown("#### 📊 Data & Visualisation")
+with c3:
     st.markdown("""
-    <span class="badge">Pandas</span>
-    <span class="badge">NumPy</span>
-    <span class="badge">Plotly</span>
-    <span class="badge">Streamlit</span>
-    <span class="badge">Seaborn / Matplotlib</span>
-    <span class="badge">Power BI / Tableau</span>
+    <div class="pillar-card">
+        <div class="pillar-title">Actuariat & Réassurance</div>
+        <div class="pillar-desc">
+            Calibrage optimal de traités non-vie, modélisation des valeurs extrêmes et solvabilité.
+        </div>
+        <div class="pillar-tags">Code CIMA • EVT • Moteur Technique • PyTorch</div>
+    </div>
     """, unsafe_allow_html=True)
 
-with c_skill4:
-    st.markdown("#### ⚙️ MLOps & Cloud")
+with c4:
     st.markdown("""
-    <span class="badge badge-purple">Docker</span>
-    <span class="badge badge-purple">FastAPI</span>
-    <span class="badge badge-purple">MLflow</span>
-    <span class="badge badge-purple">Google Cloud (GCP)</span>
-    <span class="badge badge-purple">CI/CD (GitHub Actions)</span>
-    <span class="badge badge-purple">DVC</span>
+    <div class="pillar-card">
+        <div class="pillar-title">Gouvernance & SI État</div>
+        <div class="pillar-desc">
+            Dématérialisation de guichets régaliens, automatisation ERP et continuité critique.
+        </div>
+        <div class="pillar-tags">SAGE 100c • ITIL v4 • PRINCE2 • E-Gouvernance</div>
+    </div>
     """, unsafe_allow_html=True)
 
-st.markdown("---")
 
-# ---------------------------------------------------------
-# PROJETS PHARES AVEC DÉMOS INTERACTIVES
-# ---------------------------------------------------------
-st.subheader("🚀 Projets phares & Démonstrations interactives")
-st.caption("Explorez les démonstrations interactives intégrées directement dans les onglets ci-dessous.")
+st.markdown("<br>", unsafe_allow_html=True)
 
-tab1, tab2, tab3 = st.tabs([
-    "📊 1. Modèle de Churn Client (Prédiction en direct)",
-    "🤖 2. Assistant IA & RAG (Simulation Q&A)",
-    "📈 3. Dashboard Financier & Séries Temporelles"
+# ==============================================================================
+# 5. ORGANISATION EN 5 ONGLETS
+# ==============================================================================
+tab_ia, tab_actuariat, tab_gov, tab_solutions, tab_sim = st.tabs([
+    "1. IA, Vision & Data Science",
+    "2. Actuariat & Réassurance",
+    "3. Projets Nationaux & GovTech",
+    "4. Solutions Métier & Digitalisation",
+    "5. Analytics & Démonstration Risque"
 ])
 
-# Onglet 1 : Démo Churn
-with tab1:
-    col_p1_text, col_p1_demo = st.columns([1.2, 1.8])
-    
-    with col_p1_text:
-        st.markdown("### Modèle de prédiction du Churn Client")
+# ------------------------------------------------------------------------------
+# ONGLET 1 : IA, VISION & DATA SCIENCE
+# ------------------------------------------------------------------------------
+with tab_ia:
+    st.markdown("### Intelligence Artificielle, Vision par Ordinateur & Data Mining")
+    st.caption("Modélisation prédictive, détection d'anomalies en temps réel et inférence embarquée sur terminaux mobiles.")
+
+    # Projet 1.1: Mobile Money Fraude
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-primary">FinTech & Paiements</span>
+                <div class="project-title" style="margin-top: 5px;">Détection de Fraude Mobile Money & Transactions Financières</div>
+                <div class="project-role">Lead Data Scientist & ML Engineer</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-green">Rappel : 97%</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Conception d'un pipeline complet de Machine Learning ciblé sur les flux de transferts critiques (opérations TRANSFER et CASH_OUT sur jeu de données PaySim).
+            Ingénierie de variables avancée capturant les signatures de fraude caractéristiques : vidage intégral de solde (Zero-Balance Draining), déséquilibre des soldes émetteur/destinataire et vélocité temporelle inhabituelle.
+            Optimisation des hyperparamètres et calibrage des seuils décisionnels pour minimiser les faux positifs tout en captant l'essentiel du volume financier à risque.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : 97% de rappel atteint, captant plus de 99,5% de la valeur totale frauduleuse avec un temps de réponse d'inférence inférieur à 20 ms.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">LightGBM</span>
+            <span class="tech-badge">Scikit-Learn</span>
+            <span class="tech-badge">PaySim</span>
+            <span class="tech-badge">Feature Engineering</span>
+            <span class="tech-badge">Plotly</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 1.2: Sinistres & Audit
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-primary">Assurance & Audit</span>
+                <div class="project-title" style="margin-top: 5px;">Moteur Anti-Fraude Sinistres & Fast-Track d'Indemnisation</div>
+                <div class="project-role">Architecte IA & Spécialiste Risques</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-amber">XGBoost & Isolation Forest</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Système d'évaluation probabiliste des déclarations de sinistres combinant détection d'anomalies non supervisée (Isolation Forest) et modèle de classification supervisée (XGBoost).
+            Intégration d'un module d'explicabilité par valeurs SHAP fournissant aux auditeurs et gestionnaires les facteurs explicatifs détaillés de chaque alerte (anomalies chronologiques, récurrence anormale de tiers).
+            Mise en place d'un parcours Fast-Track orientant automatiquement les dossiers réguliers vers une liquidation accélérée.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Réduction de 45% des frais d'expertise externe et diminution du délai de règlement des sinistres conformes de 15 jours à 48 heures.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">XGBoost</span>
+            <span class="tech-badge">Isolation Forest</span>
+            <span class="tech-badge">SHAP Values</span>
+            <span class="tech-badge">FastAPI</span>
+            <span class="tech-badge">Analyse de Graphes</span>
+            <span class="tech-badge">PostgreSQL</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 1.3: E-SUIVI BTP
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-purple">Edge AI & Mobilité</span>
+                <div class="project-title" style="margin-top: 5px;">E-SUIVI — Inspection Chantiers BTP & Détection Visuelle Embarquée</div>
+                <div class="project-role">Architecte Mobile & Edge AI</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-green">Offline-First & TFLite</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Application mobile d'inspection technique d'infrastructures conçue pour fonctionner en zones dépourvues de connectivité réseau.
+            Intégration d'un modèle TensorFlow Lite quantifié pour la classification et le repérage sur le terrain des non-conformités structurelles et armatures.
+            Architecture locale Offline-First avec moteur d'indexation SQLite FTS5, synchronisation incrémentale chiffrée lors de la reconnexion et intégration MDM Android.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Disponibilité opérationnelle permanente sans connexion, élimination des pertes de rapports de terrain et centralisation automatisée des non-conformités.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">Flutter / Dart</span>
+            <span class="tech-badge">TensorFlow Lite</span>
+            <span class="tech-badge">SQLite FTS5</span>
+            <span class="tech-badge">Computer Vision</span>
+            <span class="tech-badge">Android MDM</span>
+            <span class="tech-badge">API REST</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ------------------------------------------------------------------------------
+# ONGLET 2 : ACTUARIAT, TRAITÉS & SI RÉASSURANCE
+# ------------------------------------------------------------------------------
+with tab_actuariat:
+    st.markdown("### Actuariat, Traités & Systèmes d'Information de Réassurance")
+    st.caption("Modélisation quantitative des engagements réglementaires CIMA et modernisation des architectures applicatives de réassurance.")
+
+    # Projet 2.1: Optimisation Actuarielle Traités
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-primary">Sciences Actuarielles & Code CIMA</span>
+                <div class="project-title" style="margin-top: 5px;">Optimisation Actuarielle des Traités de Réassurance Non-Vie</div>
+                <div class="project-role">Ingénieur Chercheur en Sciences Actuarielles (Master 2 & AMRe)</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-purple">EVT & PyTorch</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Modélisation stochastique appliquée au calibrage des structures de réassurance proportionnelles (Quote-Part, Excédent de Plein) et non-proportionnelles (Excédent de Sinistre / XS).
+            Application de la Théorie des Valeurs Extrêmes (EVT / loi de Pareto généralisée) pour la modélisation des sinistres majeurs et des risques de pointe.
+            Intégration d'algorithmes d'optimisation sous contraintes de capital réglementaire et de solvabilité conformes aux exigences du Code CIMA.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Réduction de 18% du besoin en capital de solvabilité tout en préservant le niveau de rétention optimal de la compagnie face aux chocs extrêmes.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">PyTorch</span>
+            <span class="tech-badge">Théorie des Valeurs Extrêmes</span>
+            <span class="tech-badge">Simulations Monte Carlo</span>
+            <span class="tech-badge">Code CIMA</span>
+            <span class="tech-badge">AMRe</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 2.2: REASS-NEXT
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-green">ERP Technique & Microservices</span>
+                <div class="project-title" style="margin-top: 5px;">REASS-NEXT — ERP & Moteur de Calcul Technique CIMA</div>
+                <div class="project-role">Architecte Logiciel & Développeur Backend</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-green">&lt; 150 ms / police</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Développement d'un progiciel métier de réassurance couvrant la gestion des traités, des cessions légales et des facultatives.
+            Moteur de calcul technique multi-devises développé sous FastAPI, assurant la ventilation automatique des primes, sinistres et commissions selon les cascades de plein.
+            Conteneurisation Docker complète, persistance transactionnelle ACID et interfaces adaptées aux souscripteurs et comptables techniques.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Latence de calcul technique inférieure à 150 ms par police, capacité de traitement de plus de 150 000 lignes de risque sans saturation système.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">FastAPI</span>
+            <span class="tech-badge">Python Asynchrone</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Architecture Microservices</span>
+            <span class="tech-badge">RabbitMQ</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 2.3: SI & SAGE 100c
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-amber">Systèmes d'Information & ERP</span>
+                <div class="project-title" style="margin-top: 5px;">SI & Interfaçage Automatisé SAGE 100c (GLOBUS-RE)</div>
+                <div class="project-role">Ingénieur SI & Administrateur Systèmes Senior (+7 ans d'exp.)</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-primary">Cadre ITIL v4</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Conception et fiabilisation de l'interfaçage technique entre le coeur de métier de réassurance (GLOBUS-RE) et le logiciel comptable SAGE 100c.
+            Mise en place d'une passerelle ETL sous MS SQL Server gérant les déversements d'écritures, le lettrage automatique et la réconciliation bancaire.
+            Application des processus ITIL v4 pour la gestion des changements en production et la traçabilité des opérations sensibles.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Durée des clôtures comptables trimestrielles ramenée de 3 semaines de saisies manuelles à quelques heures d'exécution automatisée sans écart de réconciliation.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">SAGE 100c</span>
+            <span class="tech-badge">MS SQL Server</span>
+            <span class="tech-badge">T-SQL</span>
+            <span class="tech-badge">Pipelines ETL</span>
+            <span class="tech-badge">ITIL v4</span>
+            <span class="tech-badge">GLOBUS-RE</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 2.4: Faso Assur Tech
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-primary">InsurTech</span>
+                <div class="project-title" style="margin-top: 5px;">Faso Assur Tech — Comparateur & Souscription Digitale</div>
+                <div class="project-role">Tech Lead Full-Stack</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-green">Paiements Mobile Money</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Plateforme web et mobile permettant la comparaison d'offres d'assurance et la souscription dématérialisée immédiate avec délivrance d'attestations certifiées.
+            Interfaçage avec les passerelles de paiement Mobile Money locales et mise en conformité stricte avec les exigences de l'APDP sur les données personnelles.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Parcours de souscription entièrement dématérialisé réalisable en moins de 3 minutes par l'assuré.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">FastAPI</span>
+            <span class="tech-badge">Vue.js</span>
+            <span class="tech-badge">APIs Mobile Money</span>
+            <span class="tech-badge">Conformité APDP</span>
+            <span class="tech-badge">PostgreSQL</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ------------------------------------------------------------------------------
+# ONGLET 3 : PROJETS NATIONAUX & GOVTECH
+# ------------------------------------------------------------------------------
+with tab_gov:
+    st.markdown("### Projets Nationaux, E-Gouvernance & Architectures Souveraines")
+    st.caption("Déploiement d'infrastructures logicielles régaliennes et dématérialisation des services publics.")
+
+    # Projet 3.1: SYLVIE V2
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-primary">Commerce Extérieur & Douanes</span>
+                <div class="project-title" style="margin-top: 5px;">SYLVIE V2 — Guichet Unique du Commerce Extérieur</div>
+                <div class="project-role">Ingénieur d'Études & Développeur Backend (SOGESY SA)</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-amber">Spring Boot & BPMN</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Contribution à la modernisation du guichet unique national de dématérialisation des formalités de pré-dédouanement et d'import/export au Burkina Faso.
+            Développement de microservices sous Spring Boot et implémentation de workflows d'autorisation via le moteur de règles Activiti 6 BPMN.
+            Interconnexion sécurisée entre les administrations douanières, les ministères techniques, le Trésor Public et les institutions bancaires.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Traitement mensuel de plus de 10 000 dossiers de commerce extérieur avec réduction notable des délais administratifs.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">Java / Spring Boot</span>
+            <span class="tech-badge">Activiti 6 BPMN</span>
+            <span class="tech-badge">Angular</span>
+            <span class="tech-badge">Oracle DB / PostgreSQL</span>
+            <span class="tech-badge">Sécurité TLS & PKI</span>
+            <span class="tech-badge">SOGESY SA</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 3.2: BURKINDI
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-primary">Ministère de la Justice</span>
+                <div class="project-title" style="margin-top: 5px;">BURKINDI — Dématérialisation des Demandes de Naturalisation</div>
+                <div class="project-role">Lead Développeur & Architecte de Migration</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-green">Symfony 2.8 ➔ Symfony 7</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Migration et refonte complète du système étatique hérité de Symfony 2.8 vers Symfony 7 avec PHP 8.2+.
+            Mise en place d'une politique rigoureuse de contrôle d'accès basée sur les rôles (RBAC), chiffrement des documents d'identité et traçabilité inviolable des visas ministériels.
+            Assurance de la continuité opérationnelle du service pour les commissions administratives durant la bascule.
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Dette technique assainie, temps de réponse divisé par 4 et conformité avec les standards de sécurité gouvernementaux.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">Symfony 7</span>
+            <span class="tech-badge">PHP 8.2</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Sécurité RBAC</span>
+            <span class="tech-badge">PRINCE2</span>
+            <span class="tech-badge">Journalisation d'Audit</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Projet 3.3: Guichets Dématérialisés Justice & Santé
+    st.markdown("""
+    <div class="project-card">
+        <div class="project-header">
+            <div>
+                <span class="tech-badge tech-badge-purple">Justice & Santé Publique</span>
+                <div class="project-title" style="margin-top: 5px;">Guichets Dématérialisés Justice & Santé (RCCM, Agréments, Permis)</div>
+                <div class="project-role">Consultant Dématérialisation des Processus Publics</div>
+            </div>
+            <div>
+                <span class="tech-badge tech-badge-primary">Services Dématérialisés</span>
+            </div>
+        </div>
+        <div class="project-desc">
+            Conception et mise en production de guichets publics numériques :
+            <ul style="margin-top: 6px; margin-bottom: 6px; color: #334155;">
+                <li><strong>Portail RCCM :</strong> Formalités d'immatriculation d'entreprises et délivrance des extraits certifiés.</li>
+                <li><strong>Agrément des Établissements de Santé :</strong> Instruction des dossiers d'ouverture d'officines et structures médicales.</li>
+                <li><strong>Permis de Communiquer :</strong> Traitement des autorisations d'accès carcéral auprès des juridictions d'instruction.</li>
+            </ul>
+        </div>
+        <div class="impact-box">
+            Résultats obtenus : Réduction des délais d'attente physiques, traçabilité administrative complète et émission de documents sécurisés par QR Code vérifiable.
+        </div>
+        <div class="badge-container">
+            <span class="tech-badge">PHP / Symfony</span>
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Génération PDF Sécurisée</span>
+            <span class="tech-badge">Signatures Numériques</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ------------------------------------------------------------------------------
+# ONGLET 4 : DIGITALISATION & SOLUTIONS MÉTIER
+# ------------------------------------------------------------------------------
+with tab_solutions:
+    st.markdown("### Solutions Métier, Logistique & Digitalisation")
+    st.caption("Développement d'outils opérationnels pour l'industrie, le commerce et la gestion logistique.")
+
+    c_sol1, c_sol2 = st.columns(2)
+
+    with c_sol1:
+        # EKDS-PREFA
         st.markdown("""
-        Ce projet résout un défi stratégique majeur : anticiper la résiliation d'abonnés télécom ou SaaS 
-        avant qu'ils ne partent, permettant aux équipes de rétention d'agir proactivement.
+        <div class="project-card">
+            <span class="tech-badge tech-badge-primary">Industrie & BTP</span>
+            <div class="project-title" style="margin-top: 5px;">EKDS-PREFA (Prefat Pro) — Traçabilité Industrielle BTP</div>
+            <div class="project-role">Architecte Solution & Développeur Mobile</div>
+            <div class="project-desc">
+                Plateforme de suivi de production et de traçabilité des éléments préfabriqués en béton (poutrelles, dallettes, pavés).
+                Identification des lots par étiquetage QR Code scanné sur terminal mobile Flutter lors des étapes de coulage, séchage, contrôle qualité et expédition.
+            </div>
+            <div class="impact-box">
+                Résultats obtenus : Traçabilité des rebuts en direct, diminution de 30% des anomalies de livraison et visibilité instantanée sur les stocks d'agrégats.
+            </div>
+            <div class="badge-container">
+                <span class="tech-badge">Laravel</span>
+                <span class="tech-badge">Flutter</span>
+                <span class="tech-badge">Scannage QR Code</span>
+                <span class="tech-badge">MySQL</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Doux Goût
+        st.markdown("""
+        <div class="project-card">
+            <span class="tech-badge tech-badge-green">Distribution Commerciale (2026)</span>
+            <div class="project-title" style="margin-top: 5px;">Doux Goût — Plateforme de Vente & Suivi Temps Réel des Commerciaux (2026)</div>
+            <div class="project-role">Architecte Solution & Lead Développeur Full-Stack</div>
+            <div class="project-desc">
+                <strong>• Vente & Suivi Commerciaux Temps Réel :</strong> Digitalisation complète des flux de vente sur le terrain et suivi géographique/opérationnel des commerciaux en direct.<br>
+                <strong>• Tableaux de Bord Interactifs :</strong> Pilotage centralisé des performances (chiffre d'affaires, taux de réalisation des objectifs, panier moyen) et suivi instantané des commandes entrantes.
+            </div>
+            <div class="impact-box">
+                Résultats obtenus : Visibilité en direct sur 100% des ventes terrain, réduction des retards de livraison et pilotage commercial prédictif au quotidien.
+            </div>
+            <div class="badge-container">
+                <span class="tech-badge tech-badge-primary">PHP / Laravel</span>
+                <span class="tech-badge tech-badge-primary">Node.js / Vite</span>
+                <span class="tech-badge tech-badge-green">Tableaux de bord interactifs</span>
+                <span class="tech-badge tech-badge-amber">MySQL</span>
+                <span class="tech-badge">APIs REST</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with c_sol2:
+        # Colis Express
+        st.markdown("""
+        <div class="project-card">
+            <span class="tech-badge tech-badge-amber">Logistique & Transport</span>
+            <div class="project-title" style="margin-top: 5px;">Colis Express — Crowdshipping Interurbain</div>
+            <div class="project-role">Tech Lead Mobile & Backend</div>
+            <div class="project-desc">
+                Plateforme collaborative d'acheminement et de suivi de colis entre centres urbains d'Afrique de l'Ouest, s'appuyant sur les flux réguliers de transporteurs partenaires.
+                Console d'exploitation sous Laravel Filament, application mobile Flutter client/transporteur avec alertes push et validation par signature numérique.
+            </div>
+            <div class="impact-box">
+                Résultats obtenus : Réduction des coûts d'expédition de 40% par rapport aux solutions classiques et suivi des étapes de transit à la minute près.
+            </div>
+            <div class="badge-container">
+                <span class="tech-badge">Flutter</span>
+                <span class="tech-badge">Laravel Filament</span>
+                <span class="tech-badge">WebSockets</span>
+                <span class="tech-badge">Géolocalisation</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # FASO DOG
+        st.markdown("""
+        <div class="project-card">
+            <span class="tech-badge tech-badge-purple">Génétique & Élevage</span>
+            <div class="project-title" style="margin-top: 5px;">FASO DOG — Registre Généalogique & Écosystème Canin</div>
+            <div class="project-role">Concepteur Algorithmique & Développeur</div>
+            <div class="project-desc">
+                Plateforme de certification généalogique et de suivi sanitaire d'élevage.
+                Intégration de l'algorithme de calcul du Coefficient de Consanguinité de Wright sur plusieurs générations pour assister les éleveurs et génération automatisée d'arbres généalogiques et certificats PDF certifiés.
+            </div>
+            <div class="impact-box">
+                Résultats obtenus : Plus de 1 500 pedigrees officiels vérifiés et contrôle rigoureux des plans d'accouplement.
+            </div>
+            <div class="badge-container">
+                <span class="tech-badge">Flutter</span>
+                <span class="tech-badge">Coefficient de Wright</span>
+                <span class="tech-badge">Moteur PDF Certifié</span>
+                <span class="tech-badge">API REST</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+# ------------------------------------------------------------------------------
+# ONGLET 5 : ANALYTICS & SIMULATEUR DE RISQUE
+# ------------------------------------------------------------------------------
+with tab_sim:
+    st.markdown("### Analytics de Portefeuille & Détection de Risque")
+    st.caption("Visualisation synthétique des réalisations logicielles et démonstration du moteur d'évaluation des transactions financières.")
+
+    # 1. Analytics de portefeuille
+    st.markdown("#### Répartition du Portefeuille de Projets")
+
+    col_chart1, col_chart2 = st.columns([1.1, 1.1])
+
+    projects_data = [
+        {"Domaine": "IA & Data Science", "Projet": "Fraude Mobile Money", "Maturite": "Production", "Technologie": "LightGBM"},
+        {"Domaine": "IA & Data Science", "Projet": "Moteur Anti-Fraude Sinistres", "Maturite": "Production", "Technologie": "XGBoost"},
+        {"Domaine": "IA & Data Science", "Projet": "E-SUIVI Edge AI", "Maturite": "Production", "Technologie": "TFLite / Flutter"},
+        {"Domaine": "Actuariat & Réassurance", "Projet": "Optimisation Traités CIMA", "Maturite": "Recherche Appliquée", "Technologie": "EVT / PyTorch"},
+        {"Domaine": "Actuariat & Réassurance", "Projet": "REASS-NEXT ERP", "Maturite": "Production", "Technologie": "FastAPI"},
+        {"Domaine": "Actuariat & Réassurance", "Projet": "SI & SAGE 100c", "Maturite": "Production", "Technologie": "MS SQL / ITIL"},
+        {"Domaine": "Actuariat & Réassurance", "Projet": "Faso Assur Tech", "Maturite": "Production", "Technologie": "FastAPI"},
+        {"Domaine": "Projets Nationaux & GovTech", "Projet": "SYLVIE V2 Guichet Unique", "Maturite": "Production Nationale", "Technologie": "Spring Boot"},
+        {"Domaine": "Projets Nationaux & GovTech", "Projet": "BURKINDI Naturalisation", "Maturite": "Production Nationale", "Technologie": "Symfony 7"},
+        {"Domaine": "Projets Nationaux & GovTech", "Projet": "Guichets Justice & Santé", "Maturite": "Production Nationale", "Technologie": "Symfony / Python"},
+        {"Domaine": "Digitalisation & Solutions Métier", "Projet": "EKDS-PREFA", "Maturite": "Production", "Technologie": "Laravel / Flutter"},
+        {"Domaine": "Digitalisation & Solutions Métier", "Projet": "Colis Express", "Maturite": "Production", "Technologie": "Flutter / Filament"},
+        {"Domaine": "Digitalisation & Solutions Métier", "Projet": "Doux Goût (Vente & Suivi)", "Maturite": "Production", "Technologie": "PHP / Laravel"},
+        {"Domaine": "Digitalisation & Solutions Métier", "Projet": "FASO DOG", "Maturite": "Production", "Technologie": "Flutter / Algo"}
+    ]
+    df_p = pd.DataFrame(projects_data)
+
+    with col_chart1:
+        domain_counts = df_p["Domaine"].value_counts().reset_index()
+        domain_counts.columns = ["Domaine", "Nombre de Projets"]
         
-        - **Pipeline :** Nettoyage des données, gestion du déséquilibre de classes (SMOTE), sélection de features.
-        - **Modèles comparés :** Régression Logistique, Random Forest, XGBoost (meilleur F1-Score : 0.89).
-        - **Explicabilité :** SHAP values pour comprendre l'impact de chaque variable client.
-        """)
-        st.markdown("**Stack :** `Python`, `XGBoost`, `Scikit-Learn`, `Pandas`, `Plotly`, `SHAP`")
+        fig_pie = px.pie(
+            domain_counts,
+            values="Nombre de Projets",
+            names="Domaine",
+            hole=0.45,
+            color_discrete_sequence=["#1D4ED8", "#0F766E", "#6D28D9", "#B45309"],
+            title="Distribution par Domaine d'Expertise"
+        )
+        fig_pie.update_traces(textposition='inside', textinfo='percent+label', marker=dict(line=dict(color='#FFFFFF', width=2)))
+        fig_pie.update_layout(
+            font=dict(family="Plus Jakarta Sans, sans-serif", color="#0F172A"),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            height=340,
+            margin=dict(l=10, r=10, t=40, b=10),
+            showlegend=False
+        )
+        st.plotly_chart(fig_pie, use_container_width=True)
+
+    with col_chart2:
+        tech_counts = df_p["Technologie"].value_counts().head(7).reset_index()
+        tech_counts.columns = ["Stack / Framework", "Occurrences"]
         
-        c_link1, c_link2 = st.columns(2)
-        with c_link1:
-            st.link_button("📂 Code GitHub", "https://github.com", use_container_width=True)
-        with c_link2:
-            st.link_button("📄 Rapport d'analyse", "https://github.com", use_container_width=True)
+        fig_bar = px.bar(
+            tech_counts,
+            x="Occurrences",
+            y="Stack / Framework",
+            orientation="h",
+            color="Occurrences",
+            color_continuous_scale=[[0, "#93C5FD"], [1, "#1D4ED8"]],
+            title="Technologies Fréquemment Déployées"
+        )
+        fig_bar.update_layout(
+            font=dict(family="Plus Jakarta Sans, sans-serif", color="#0F172A"),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            height=340,
+            margin=dict(l=10, r=10, t=40, b=10),
+            coloraxis_showscale=False
+        )
+        fig_bar.update_yaxes(categoryorder="total ascending", gridcolor="#F1F5F9")
+        fig_bar.update_xaxes(gridcolor="#F1F5F9")
+        st.plotly_chart(fig_bar, use_container_width=True)
 
-    with col_p1_demo:
-        st.markdown("##### 🎛️ Testez le simulateur en temps réel :")
-        with st.container(border=True):
-            s_col1, s_col2 = st.columns(2)
-            with s_col1:
-                tenure = st.slider("Ancienneté du client (mois)", min_value=1, max_value=72, value=12)
-                monthly_charges = st.slider("Facture mensuelle (€)", min_value=20.0, max_value=150.0, value=75.0)
-                contract_type = st.selectbox("Type de contrat", ["Mois par mois", "1 An", "2 Ans"])
-            with s_col2:
-                support_tickets = st.slider("Nombre d'appels au support", min_value=0, max_value=10, value=3)
-                tech_support = st.radio("Option Support Technique", ["Oui", "Non"], horizontal=True)
-                payment_method = st.selectbox("Moyen de paiement", ["Prélèvement bancaire", "Carte de crédit", "Virement"])
-            
-            # Formule heuristique représentative d'un modèle ML entraîné
-            contract_risk = 0.35 if contract_type == "Mois par mois" else (0.10 if contract_type == "1 An" else 0.02)
-            support_risk = (support_tickets / 10.0) * 0.35
-            tech_risk = -0.10 if tech_support == "Oui" else 0.10
-            tenure_factor = (72 - tenure) / 72.0 * 0.25
-            charge_factor = (monthly_charges / 150.0) * 0.15
+    st.markdown("---")
 
-            churn_prob = max(0.01, min(0.99, 0.15 + contract_risk + support_risk + tech_risk + tenure_factor + charge_factor - 0.2))
+    # 2. Simulateur de scoring de risque transactionnel
+    st.markdown("#### Démonstration : Moteur d'Évaluation du Risque Transactionnel")
+    st.markdown("""
+    Cette interface illustre les règles heuristiques et pondérations prédictives issues de nos pipelines anti-fraude appliqués aux transactions de paiements et de transferts.
+    Ajustez les paramètres d'une opération pour observer l'indice de risque calculé et la procédure de conformité correspondante.
+    """)
 
-            # Jauge Plotly
+    with st.container(border=True):
+        col_in1, col_in2, col_in3 = st.columns(3)
+
+        with col_in1:
+            op_type = st.selectbox("Type d'Opération", ["TRANSFER", "CASH_OUT", "PAYMENT", "DEPOSIT"])
+            amount = st.number_input("Montant de la Transaction", min_value=100.0, max_value=5000000.0, value=75000.0, step=5000.0)
+
+        with col_in2:
+            orig_old_bal = st.number_input("Solde Initial Émetteur", min_value=0.0, max_value=10000000.0, value=76000.0, step=5000.0)
+            orig_new_bal = st.number_input("Solde Résiduel Émetteur", min_value=0.0, max_value=10000000.0, value=1000.0, step=5000.0)
+
+        with col_in3:
+            dest_old_bal = st.number_input("Solde Initial Bénéficiaire", min_value=0.0, max_value=10000000.0, value=0.0, step=5000.0)
+            dest_new_bal = st.number_input("Solde Final Bénéficiaire", min_value=0.0, max_value=10000000.0, value=0.0, step=5000.0)
+            tx_hour = st.slider("Heure de la Transaction (0h - 23h)", min_value=0, max_value=23, value=3)
+
+        # Calcul d'indice de risque
+        base_score = 0
+        if op_type in ["TRANSFER", "CASH_OUT"]:
+            base_score += 28
+        else:
+            base_score += 5
+
+        orig_diff = orig_old_bal - orig_new_bal
+        if orig_old_bal > 0 and orig_new_bal == 0 and abs(orig_diff - amount) < 1.0:
+            base_score += 35
+        elif orig_new_bal < 0:
+            base_score += 30
+
+        if dest_old_bal == 0 and dest_new_bal == 0 and amount > 10000 and op_type == "TRANSFER":
+            base_score += 25
+
+        if 1 <= tx_hour <= 5:
+            base_score += 12
+
+        if orig_old_bal > 0:
+            ratio = amount / orig_old_bal
+            if ratio > 0.95:
+                base_score += 15
+
+        risk_score = min(100, max(2, base_score))
+
+        col_res1, col_res2 = st.columns([1.2, 1.8])
+
+        with col_res1:
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
-                value=churn_prob * 100,
+                value=risk_score,
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "Probabilité estimée de résiliation", 'font': {'size': 16, 'color': '#1E293B'}},
-                number={'suffix': "%", 'font': {'size': 26, 'color': '#0F172A'}},
+                title={'text': "Indice de Risque Calculé (/100)", 'font': {'size': 14, 'family': 'Plus Jakarta Sans', 'color': '#334155'}},
+                number={'suffix': "/100", 'font': {'size': 24, 'family': 'Plus Jakarta Sans', 'color': '#0F172A'}},
                 gauge={
-                    'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#94A3B8"},
-                    'bar': {'color': "#EF4444" if churn_prob > 0.5 else ("#F59E0B" if churn_prob > 0.3 else "#10B981")},
+                    'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#CBD5E1"},
+                    'bar': {'color': "#DC2626" if risk_score >= 70 else ("#D97706" if risk_score >= 35 else "#0F766E")},
                     'steps': [
-                        {'range': [0, 30], 'color': "#DCFCE7"},
-                        {'range': [30, 50], 'color': "#FEF3C7"},
-                        {'range': [50, 100], 'color': "#FEE2E2"}
+                        {'range': [0, 35], 'color': "#F0FDF4"},
+                        {'range': [35, 70], 'color': "#FFFBEB"},
+                        {'range': [70, 100], 'color': "#FEF2F2"}
                     ],
                     'threshold': {
-                        'line': {'color': "black", 'width': 3},
+                        'line': {'color': "#0F172A", 'width': 2},
                         'thickness': 0.75,
-                        'value': 50
+                        'value': 70
                     }
                 }
             ))
-            fig_gauge.update_layout(height=240, margin=dict(l=20, r=20, t=40, b=10))
+            fig_gauge.update_layout(
+                font=dict(family="Plus Jakarta Sans, sans-serif"),
+                paper_bgcolor="rgba(0,0,0,0)",
+                height=250,
+                margin=dict(l=20, r=20, t=35, b=10)
+            )
             st.plotly_chart(fig_gauge, use_container_width=True)
 
-            if churn_prob > 0.5:
-                st.error("⚠️ **Risque élevé de résiliation !** Recommandation : Proposer une remise de fidélité ou un contact avec le gestionnaire de compte.")
-            elif churn_prob > 0.3:
-                st.warning("⚡ **Risque modéré.** Surveillance recommandée.")
+        with col_res2:
+            st.markdown("##### Décision & Procédure de Conformité Déclenchée :")
+            if risk_score >= 70:
+                st.error("""
+                **Décision : Transaction Suspendue — Audit Requis**  
+                - **Motif :** Vidage intégral de compte ou compte bénéficiaire non consolidé en flux critique.  
+                - **Procédure :** Gel conservatoire de l'opération, journalisation d'audit WORM et transmission à l'équipe conformité.
+                """)
+            elif risk_score >= 35:
+                st.warning("""
+                **Décision : Authentification Renforcée Requise (2FA / OTP)**  
+                - **Motif :** Opération à montant significatif ou plage horaire nocturne inhabituelle.  
+                - **Procédure :** Déclenchement d'un défi d'authentification biométrique ou validation OTP avant exécution.
+                """)
             else:
-                st.success("✅ **Client fidèle et sécurisé.** Faible probabilité de départ.")
+                st.success("""
+                **Décision : Validation Immédiate (Fast-Track)**  
+                - **Motif :** Profil transactionnel cohérent avec les critères réguliers et soldes normaux.  
+                - **Procédure :** Inférence et compensation exécutées sous les 150 ms sans intervention manuelle.
+                """)
 
-# Onglet 2 : RAG & Assistant IA
-with tab2:
-    col_p2_text, col_p2_demo = st.columns([1.2, 1.8])
-    
-    with col_p2_text:
-        st.markdown("### Assistant RAG d'Entreprise avec LangChain")
-        st.markdown("""
-        Un système intelligent de **Retrieval-Augmented Generation (RAG)** permettant aux collaborateurs 
-        d'interroger en langage naturel la documentation interne d'entreprise (politiques RH, spécifications techniques, contrats).
-        
-        - **Indexation vectorielle :** Découpage sémantique (Chunking), génération d'embeddings avec `text-embedding-3-small`.
-        - **Stockage vectoriel :** Base ChromaDB / Pinecone avec recherche par similarité cosinus et re-ranking.
-        - **Génération contrôlée :** Réduction des hallucinations via un prompt structuré obligeant la citation stricte des sources.
-        """)
-        st.markdown("**Stack :** `LangChain`, `OpenAI API`, `ChromaDB`, `FastAPI`, `Streamlit`")
-        
-        c_link1, c_link2 = st.columns(2)
-        with c_link1:
-            st.link_button("📂 Repo GitHub", "https://github.com", use_container_width=True)
-        with c_link2:
-            st.link_button("🌐 Documentation", "https://github.com", use_container_width=True)
+            st.markdown(f"""
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 9px 12px; border-radius: 6px; font-size: 0.83rem; color: #475569;">
+                <strong>Paramètres d'inférence :</strong> Opération <code>{op_type}</code> de <code>{amount:,.2f}</code> | 
+                Variation solde émetteur : <code>{orig_diff:,.2f}</code> | 
+                Heure locale : <code>{tx_hour:02d}h00</code>.
+            </div>
+            """, unsafe_allow_html=True)
 
-    with col_p2_demo:
-        st.markdown("##### 💬 Simuler une interaction avec l'Assistant RAG :")
-        with st.container(border=True):
-            sample_questions = [
-                "Quelle est la politique de télétravail ?",
-                "Quel est le plafond de remboursement pour le matériel informatique ?",
-                "Combien de jours de congés payés sont alloués par an ?"
-            ]
-            
-            selected_question = st.selectbox("Sélectionnez ou tapez une question exemple :", sample_questions)
-            custom_question = st.text_input("Ou posez une question personnalisée :", value=selected_question)
-            
-            knowledge_base = {
-                "télétravail": {
-                    "answer": "Selon l'accord d'entreprise (Section 4.2), chaque collaborateur a droit à 2 jours de télétravail par semaine après la période d'essai, avec une indemnité mensuelle forfaitaire de 30 € pour les frais de connexion.",
-                    "source": "Guide_Collaborateur_RH_2024.pdf (Page 18, § 4.2)",
-                    "score": "96.4% de similarité"
-                },
-                "matériel": {
-                    "answer": "L'équipement standard comprend un ordinateur portable (MacBook Pro ou Dell XPS), un écran externe 27 pouces et une allocation de 250 € remboursable sur facture pour les accessoires ergonomiques.",
-                    "source": "Politique_IT_Materiel.pdf (Page 5, § 2.1)",
-                    "score": "94.8% de similarité"
-                },
-                "congés": {
-                    "answer": "Les collaborateurs bénéficient de 25 jours ouvrés de congés payés légaux par an, complétés par 10 à 12 jours de RTT selon le calendrier annuel de l'accord cadre 35h.",
-                    "source": "Convention_Temps_De_Travail.pdf (Page 9, § 1.3)",
-                    "score": "98.1% de similarité"
-                }
-            }
-
-            if st.button("🔍 Interroger l'assistant RAG", type="primary"):
-                with st.spinner("Recherche sémantique dans la base vectorielle..."):
-                    q_lower = custom_question.lower()
-                    matched_key = None
-                    if "télé" in q_lower or "remote" in q_lower:
-                        matched_key = "télétravail"
-                    elif "matériel" in q_lower or "ordinateur" in q_lower or "écran" in q_lower:
-                        matched_key = "matériel"
-                    elif "congé" in q_lower or "rtt" in q_lower or "vacance" in q_lower:
-                        matched_key = "congés"
-                    
-                    if matched_key:
-                        item = knowledge_base[matched_key]
-                        st.markdown(f"**🤖 Réponse synthétisée :**\n\n{item['answer']}")
-                        st.info(f"📚 **Source extraite :** `{item['source']}` — Indice de confiance : `{item['score']}`")
-                    else:
-                        st.markdown("""
-                        **🤖 Réponse synthétisée :**  
-                        D'après les documents indexés, cette question nécessite une validation auprès du support concerné ou n'apparaît pas explicitement dans les documents de démonstration.
-                        """)
-                        st.caption("ℹ️ Pour tester un cas réel complet, connectez vos propres PDF via l'application complète !")
-
-# Onglet 3 : Dashboard Financier
-with tab3:
-    col_p3_text, col_p3_demo = st.columns([1.2, 1.8])
-
-    with col_p3_text:
-        st.markdown("### Dashboard Boursier & Analyse Technique")
-        st.markdown("""
-        Une plateforme d'analyse financière permettant de suivre en temps réel la volatilité des actifs,
-        de calculer des indicateurs clés (**Moyennes Mobiles**, **RSI**, **Bandes de Bollinger**) et de simuler des signaux de trading.
-        
-        - **Calcul d'indicateurs :** Implémentation vectorisée NumPy / Pandas pour une rapidité optimale.
-        - **Interactivité :** Graphiques Plotly zoomables et personnalisables.
-        - **Prétraitement :** Normalisation, détection d'anomalies de volume.
-        """)
-        st.markdown("**Stack :** `Python`, `Plotly`, `Pandas`, `NumPy`, `Streamlit`")
-        
-        c_link1, c_link2 = st.columns(2)
-        with c_link1:
-            st.link_button("📂 Voir le code", "https://github.com", use_container_width=True)
-        with c_link2:
-            st.link_button("📊 Démo en direct", "https://streamlit.io", use_container_width=True)
-
-    with col_p3_demo:
-        st.markdown("##### 📈 Graphique interactif des cours & indicateurs :")
-        with st.container(border=True):
-            f_col1, f_col2, f_col3 = st.columns(3)
-            with f_col1:
-                asset_choice = st.selectbox("Actif financier", ["AI Tech Index (AITX)", "Green Energy ETF (GNRG)", "FinTech Alpha (FNTK)"])
-            with f_col2:
-                days_range = st.slider("Horizon temporel (jours)", min_value=30, max_value=180, value=90)
-            with f_col3:
-                show_sma = st.checkbox("Afficher MM 20 jours", value=True)
-
-            # Génération d'une série temporelle réaliste
-            np.random.seed(42 if "AITX" in asset_choice else (100 if "GNRG" in asset_choice else 2024))
-            dates = pd.date_range(end=datetime.today(), periods=days_range)
-            base_price = 140.0 if "AITX" in asset_choice else (85.0 if "GNRG" in asset_choice else 210.0)
-            returns = np.random.normal(loc=0.0012, scale=0.02, size=days_range)
-            price_series = base_price * np.exp(np.cumsum(returns))
-            
-            df_fin = pd.DataFrame({"Date": dates, "Prix": price_series})
-            df_fin["MM20"] = df_fin["Prix"].rolling(window=20).mean()
-
-            # Plotly interactive chart
-            fig_fin = go.Figure()
-            fig_fin.add_trace(go.Scatter(
-                x=df_fin["Date"], y=df_fin["Prix"],
-                mode='lines',
-                name='Prix de clôture (€)',
-                line=dict(color='#2563EB', width=2.5)
-            ))
-
-            if show_sma:
-                fig_fin.add_trace(go.Scatter(
-                    x=df_fin["Date"], y=df_fin["MM20"],
-                    mode='lines',
-                    name='Moyenne Mobile 20j',
-                    line=dict(color='#F59E0B', width=2, dash='dash')
-                ))
-
-            last_price = df_fin['Prix'].iloc[-1]
-            first_price = df_fin['Prix'].iloc[0]
-            pct_change = ((last_price - first_price) / first_price) * 100
-
-            fig_fin.update_layout(
-                title=f"{asset_choice} : {last_price:.2f} € ({'+' if pct_change >= 0 else ''}{pct_change:.2f}%)",
-                xaxis_title="Date",
-                yaxis_title="Prix (€)",
-                height=300,
-                margin=dict(l=20, r=20, t=40, b=20),
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
-            )
-            st.plotly_chart(fig_fin, use_container_width=True)
-
+# ==============================================================================
+# 6. FORMULAIRE DE CONTACT PROFESSIONNEL
+# ==============================================================================
 st.markdown("---")
+st.subheader("Contact Professionnel")
+st.write("Pour toute opportunité d'architecture logicielle, de modélisation actuarielle, d'expertise IA ou de consulting.")
 
-# ---------------------------------------------------------
-# EXPÉRIENCES & FORMATIONS
-# ---------------------------------------------------------
-col_exp, col_edu = st.columns(2)
+c_form_col, c_contact_col = st.columns([1.8, 1.2])
 
-with col_exp:
-    st.subheader("💼 Expériences professionnelles")
-    
-    st.markdown("""
-    <div class="timeline-item">
-        <div class="timeline-role">Data Scientist Senior / Lead ML</div>
-        <div class="timeline-company">Entreprise Tech & Solutions IA</div>
-        <div class="timeline-date">2022 - Présent | Paris / Télétravail</div>
-        <div style="color: #475569; font-size: 0.92rem;">
-            - Conception et mise en production de pipelines de Machine Learning prédictifs et de NLP.<br>
-            - Réduction du churn de 14% via l'optimisation des modèles de scoring client.<br>
-            - Encadrement technique d'une équipe de 4 Data Scientists et mise en place de la stack MLOps (MLflow, Docker).
-        </div>
-    </div>
-    
-    <div class="timeline-item">
-        <div class="timeline-role">Data Scientist & Analyste</div>
-        <div class="timeline-company">Cabinet de Conseil Data & Stratégie</div>
-        <div class="timeline-date">2020 - 2022 | Paris</div>
-        <div style="color: #475569; font-size: 0.92rem;">
-            - Modélisation statistique, segmentation clients avancée et prévision de ventes (Time Series).<br>
-            - Création de tableaux de bord interactifs pour les comités de direction.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col_edu:
-    st.subheader("🎓 Formations & Certifications")
-    
-    st.markdown("""
-    <div class="timeline-item">
-        <div class="timeline-role">Diplôme d'Ingénieur / Master en Data Science & IA</div>
-        <div class="timeline-company">École d'Ingénieurs / Université</div>
-        <div class="timeline-date">2017 - 2020</div>
-        <div style="color: #475569; font-size: 0.92rem;">
-            Spécialisation : Intelligence Artificielle, Mathématiques appliquées, Algorithmes et Big Data.
-        </div>
-    </div>
-    
-    <div class="timeline-item">
-        <div class="timeline-role">Certifications Clés</div>
-        <div class="timeline-company">Organismes Reconnus</div>
-        <div class="timeline-date">2021 - 2024</div>
-        <div style="color: #475569; font-size: 0.92rem;">
-            - <strong>Google Cloud Certified</strong> - Professional Data Engineer<br>
-            - <strong>DeepLearning.AI</strong> - Deep Learning Specialization & LangChain<br>
-            - <strong>AWS Certified Machine Learning</strong> - Specialty
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("---")
-
-# ---------------------------------------------------------
-# FORMULAIRE DE CONTACT
-# ---------------------------------------------------------
-st.markdown('<div id="me-contacter"></div>', unsafe_allow_html=True)
-st.subheader("📬 Me contacter")
-st.write("Vous avez un projet en tête, une opportunité ou souhaitez simplement échanger ? Laissez-moi un message !")
-
-col_contact_form, col_contact_info = st.columns([2, 1])
-
-with col_contact_form:
+with c_form_col:
     with st.form("contact_form", clear_on_submit=True):
-        f_name = st.text_input("Nom & Prénom *", placeholder="Ex : Marie Martin")
-        f_email = st.text_input("Adresse email *", placeholder="Ex : marie.martin@entreprise.com")
-        f_subject = st.text_input("Sujet", placeholder="Ex : Proposition d'opportunité / Projet IA")
-        f_message = st.text_area("Votre message *", rows=5, placeholder="Décrivez brièvement votre projet ou votre demande...")
+        f_name = st.text_input("Nom & Prénom *", placeholder="Ex : Dr. Diallo")
+        f_org = st.text_input("Organisation / Institution", placeholder="Ex : Banque, Compagnie d'Assurances, Ministère")
+        f_email = st.text_input("Adresse Email Professionnelle *", placeholder="Ex : direction.tech@organisation.org")
+        f_subject = st.selectbox("Objet de la Sollicitation", [
+            "Architecture Logicielle & Microservices",
+            "Projet Data Science & Détection de Fraude",
+            "Modélisation Actuarielle CIMA & Réassurance",
+            "Dématérialisation & Projet GovTech",
+            "Audit de Système d'Information & SAGE 100c",
+            "Autre échange technique"
+        ])
+        f_msg = st.text_area("Message / Périmètre du Projet *", height=120, placeholder="Précisez succinctement votre besoin ou le cadre de votre projet...")
         
-        submitted = st.form_submit_button("🚀 Envoyer le message", use_container_width=True)
-        
-        if submitted:
-            if f_name.strip() and f_email.strip() and f_message.strip():
-                st.success(f"✨ Merci **{f_name}** ! Votre message a été enregistré avec succès. Je vous répondrai dans les plus brefs délais.")
-                st.balloons()
+        btn_submit = st.form_submit_button("Envoyer le message", use_container_width=True)
+        if btn_submit:
+            if f_name.strip() and f_email.strip() and f_msg.strip():
+                st.success(f"Merci {f_name}. Votre message a bien été envoyé. Une réponse vous sera apportée sous 24 à 48 heures.")
             else:
-                st.error("⚠️ Veuillez renseigner tous les champs obligatoires (*) avant de valider.")
+                st.error("Veuillez renseigner tous les champs obligatoires (*) avant de soumettre.")
 
-with col_contact_info:
+with c_contact_col:
     st.markdown("""
-    <div class="custom-card">
-        <h4 style="margin-top:0; color:#0F172A;">Coordonnées directes</h4>
-        <p style="color:#475569; font-size:0.95rem;">
-            <strong>Email :</strong><br>
-            <a href="mailto:contact.abdellatif@example.com" style="color:#2563EB; text-decoration:none;">contact.abdellatif@example.com</a>
+    <div class="project-card" style="margin-bottom: 0;">
+        <h4 style="margin-top: 0; color: #0F172A; font-weight: 700;">Coordonnées Directes</h4>
+        <p style="color: #334155; font-size: 0.9rem; line-height: 1.6;">
+            <strong>Abdellatif Kiswendsida NIKIEMA</strong><br>
+            Ingénieur Logiciel Full-Stack & Spécialiste IA<br>
+            Certifié ITIL v4 & PRINCE2
         </p>
-        <p style="color:#475569; font-size:0.95rem;">
-            <strong>Téléphone :</strong><br>
-            +33 (0)6 00 00 00 00
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 0.8rem 0;">
+        <p style="color: #475569; font-size: 0.86rem; margin-bottom: 0.4rem;">
+            <strong>Localisation :</strong> Ouagadougou, Burkina Faso
         </p>
-        <p style="color:#475569; font-size:0.95rem;">
-            <strong>Localisation :</strong><br>
-            Paris, France (Disponible sur site ou en Full Remote)
+        <p style="color: #475569; font-size: 0.86rem; margin-bottom: 0.4rem;">
+            <strong>Téléphone :</strong> <a href="tel:+22678805060" style="color: #2563EB; text-decoration: none;">+226 78 80 50 60</a> / <a href="tel:+22665369949" style="color: #2563EB; text-decoration: none;">+226 65 36 99 49</a>
         </p>
-        <hr style="border:none; border-top:1px solid #E2E8F0; margin:1rem 0;">
-        <p style="font-size:0.85rem; color:#64748B;">
-            ⚡ <em>Réponse garantie sous 24 à 48 heures ouvrées.</em>
+        <p style="color: #475569; font-size: 0.86rem; margin-bottom: 0.4rem;">
+            <strong>Email :</strong> <a href="mailto:abdellatifnikiema@gmail.com" style="color: #2563EB; text-decoration: none;">abdellatifnikiema@gmail.com</a>
+        </p>
+        <p style="color: #475569; font-size: 0.86rem; margin-bottom: 0;">
+            <strong>Disponibilité :</strong> Missions présentielles et mandats internationaux à distance.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# FOOTER
-# ---------------------------------------------------------
+# ==============================================================================
+# 7. PIED DE PAGE
+# ==============================================================================
 st.markdown("""
-<div class="footer">
-    © 2024 - 2026 Abdellatif. Tous droits réservés. Développé avec ❤️ en Python & Streamlit.
+<div class="footer-bar">
+    © 2026 Abdellatif Kiswendsida NIKIEMA. Tous droits réservés.
 </div>
 """, unsafe_allow_html=True)
